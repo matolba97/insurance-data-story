@@ -1,3 +1,5 @@
+import { translations } from "../localization";
+import type { SceneProps } from "../localization";
 import { motion, useReducedMotion } from "motion/react";
 import { Arrow, Character, Reveal, SceneCanvas } from "./shared";
 function Department({
@@ -50,14 +52,15 @@ function Department({
     </g>
   );
 }
-export default function WorkflowScene() {
+export default function WorkflowScene({ language }: SceneProps) {
+  const text = translations[language];
   const reduced = useReducedMotion();
   return (
-    <SceneCanvas label="محمد يفحص اتصالًا معطلًا بين المبيعات والعمليات والمالية، ثم يعيد ربطه ويبسّط سير العمل">
+    <SceneCanvas language={language} label={text.workflowDescription}>
       <Reveal>
-        <Department x={61} label="Sales" icon="sales" />
-        <Department x={254} label="Operations" icon="operations" />
-        <Department x={447} label="Finance" icon="finance" />
+        <Department x={61} label={text.departments[0]} icon="sales" />
+        <Department x={254} label={text.departments[1]} icon="operations" />
+        <Department x={447} label={text.departments[2]} icon="finance" />
       </Reveal>
       <Arrow d="M195 114 H248 m-8 -6 8 6 -8 6" delay={0.4} />
       <path d="M390 114 H410 M429 114 H442" className="dashed-line" />
@@ -100,7 +103,7 @@ export default function WorkflowScene() {
             className="art-micro"
             fill="var(--accent)"
           >
-            Automation
+            {text.automation}
           </text>
         </g>
       </Reveal>
@@ -120,7 +123,7 @@ export default function WorkflowScene() {
             className="art-micro"
             fill="var(--accent)"
           >
-            Better processes
+            {text.processes}
           </text>
         </g>
       </Reveal>
@@ -132,7 +135,7 @@ export default function WorkflowScene() {
           className="art-micro"
           fill="var(--muted)"
         >
-          Data → Insight → Decisions → Processes
+          {text.flow}
         </text>
       </Reveal>
     </SceneCanvas>

@@ -1,4 +1,4 @@
-# Release verification — 10 October 2026
+# Initial release verification — 10 October 2026
 
 ## Implementation and scope
 
@@ -34,3 +34,11 @@ Deployment history: https://github.com/matolba97/insurance-data-story/actions
 Site: https://matolba97.github.io/insurance-data-story/
 
 The delivery summary records the observed deployment outcome and live checks. Repository push alone is not a live deployment check.
+
+## Five-slide bilingual update
+
+The enhancement adds Responsibilities as slide 4 and preserves the introduction as slide 5. Typed dictionaries translate all story/UI/illustration text, accessibility labels and runtime metadata. Arabic remains the safe default; stored preferences are restored without resetting the current slide during switching. The shared character and stable scene identities preserve animation state.
+
+Updated local evidence: strict TypeScript, ESLint and production build pass; 9 unit tests and 30 applicable browser tests pass, with two desktop touchscreen cases intentionally skipped. Screenshots of all five slides in both languages were inspected at desktop, Android, small mobile and landscape sizes. Small-screen responsibilities use a beside-heading illustration and full-width readable text groups. Static sharing metadata and the social-card generator now support the five-slide presentation.
+
+The delivery summary records the updated deployment and live verification outcome.

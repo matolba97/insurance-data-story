@@ -1,4 +1,5 @@
-export const SLIDE_COUNT = 4;
+import { story } from "./story";
+export const SLIDE_COUNT = story.length;
 export function moveSlide(current: number, direction: -1 | 1): number {
   return Math.max(0, Math.min(SLIDE_COUNT - 1, current + direction));
 }

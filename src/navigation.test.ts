@@ -1,14 +1,14 @@
 import { describe, expect, it } from "vitest";
 import { moveSlide, swipeDirection } from "./navigation";
 describe("bounded navigation", () => {
-  it("advances and returns through exactly four slides", () => {
+  it("advances and returns through exactly five slides", () => {
     expect(moveSlide(0, 1)).toBe(1);
     expect(moveSlide(2, 1)).toBe(3);
     expect(moveSlide(3, -1)).toBe(2);
   });
   it("never wraps at either boundary", () => {
     expect(moveSlide(0, -1)).toBe(0);
-    expect(moveSlide(3, 1)).toBe(3);
+    expect(moveSlide(4, 1)).toBe(4);
   });
 });
 describe("deliberate horizontal swipes", () => {

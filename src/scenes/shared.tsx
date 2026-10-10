@@ -1,18 +1,24 @@
+import type { Language } from "../localization";
 import { motion, useReducedMotion } from "motion/react";
+import { memo } from "react";
 import type { ReactNode } from "react";
 
 export function SceneCanvas({
   children,
   label,
+  language,
+  viewBox = "0 0 640 480",
 }: {
   children: ReactNode;
   label: string;
+  language: Language;
+  viewBox?: string;
 }) {
   return (
     <svg
-      lang="ar"
+      lang={language}
       className="scene-svg"
-      viewBox="0 0 640 480"
+      viewBox={viewBox}
       direction="ltr"
       role="img"
       aria-label={label}
@@ -51,7 +57,7 @@ export function Reveal({
   );
 }
 
-export function Character({
+export const Character = memo(function Character({
   x,
   y,
   pose = "think",
@@ -131,13 +137,15 @@ export function Character({
       </motion.g>
     </g>
   );
-}
+});
 
 export function Paper({
   label,
   kind = "lines",
+  language = "ar",
 }: {
   label: string;
+  language?: Language;
   kind?: "lines" | "sheet" | "renewal" | "money" | "pending";
 }) {
   return (
@@ -187,11 +195,11 @@ export function Paper({
         x="41"
         y="134"
         className="art-label"
-        lang="ar"
+        lang={language}
         textAnchor="middle"
         stroke="none"
         fill="var(--muted)"
-        direction="rtl"
+        direction={language === "ar" ? "rtl" : "ltr"}
       >
         {label}
       </text>

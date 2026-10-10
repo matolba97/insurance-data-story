@@ -1,9 +1,12 @@
+import { translations } from "../localization";
+import type { SceneProps } from "../localization";
 import { motion, useReducedMotion } from "motion/react";
 import { Arrow, Character, Paper, Reveal, SceneCanvas } from "./shared";
-export default function InsightScene() {
+export default function InsightScene({ language }: SceneProps) {
+  const text = translations[language];
   const reduced = useReducedMotion();
   return (
-    <SceneCanvas label="محمد ينظم السجلات ويراجعها لتتحول إلى لوحة توضيحية للأقساط والتجديدات والعمولات وأداء الفروع">
+    <SceneCanvas language={language} label={text.insightDescription}>
       <g transform="translate(64 116) scale(.72)">
         <motion.g
           initial={reduced ? false : { opacity: 1 }}
@@ -65,14 +68,14 @@ export default function InsightScene() {
           >
             Power BI
           </text>
-          {["أقساط", "تجديدات", "عمولات"].map((label, i) => (
-            <g key={label} transform={`translate(${18 + i * 99} 56)`}>
+          {text.dashboard.map((label, i) => (
+            <g key={i} transform={`translate(${18 + i * 99} 56)`}>
               <rect width="91" height="60" rx="7" fill="var(--wash)" />
               <text
                 x="76"
                 y="22"
-                textAnchor="start"
-                direction="rtl"
+                textAnchor={language === "ar" ? "start" : "end"}
+                direction={language === "ar" ? "rtl" : "ltr"}
                 className="art-micro"
                 fill="var(--muted)"
               >
@@ -95,12 +98,12 @@ export default function InsightScene() {
           <text
             x="304"
             y="144"
-            textAnchor="start"
-            direction="rtl"
+            textAnchor={language === "ar" ? "start" : "end"}
+            direction={language === "ar" ? "rtl" : "ltr"}
             className="art-micro"
             fill="var(--muted)"
           >
-            أداء الفروع
+            {text.branches}
           </text>
           <path d="M25 212 H172" stroke="var(--line)" />
           {[33, 51, 41, 63, 48].map((h, i) => (
@@ -147,15 +150,15 @@ export default function InsightScene() {
       <Reveal delay={1.6}>
         <g transform="translate(76 438)">
           <text x="0" className="art-micro" fill="var(--muted)">
-            Raw data
+            {text.raw}
           </text>
           <path d="M76 -4 H109 m-5 -4 5 4 -5 4" className="small-lines" />
           <text x="125" className="art-micro" fill="var(--accent)">
-            Clean data
+            {text.clean}
           </text>
           <path d="M212 -4 H245 m-5 -4 5 4 -5 4" className="small-lines" />
           <text x="263" className="art-micro" fill="var(--accent)">
-            Meaningful insights
+            {text.insights}
           </text>
         </g>
       </Reveal>

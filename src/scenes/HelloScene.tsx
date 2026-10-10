@@ -1,7 +1,10 @@
+import { translations } from "../localization";
+import type { SceneProps } from "../localization";
 import { Arrow, Character, Reveal, SceneCanvas } from "./shared";
-export default function HelloScene() {
+export default function HelloScene({ language }: SceneProps) {
+  const text = translations[language];
   return (
-    <SceneCanvas label="محمد يظهر مبتسمًا ويلوّح بيده، حوله رموز للبيانات والتعاون وتحسين العمليات">
+    <SceneCanvas language={language} label={text.helloDescription}>
       <circle cx="320" cy="229" r="154" fill="var(--soft-accent)" />
       <path d="M171 231 A149 149 0 0 1 444 143" className="dashed-line" />
       <Reveal delay={0.2}>
@@ -48,7 +51,7 @@ export default function HelloScene() {
             className="art-label"
             fill="var(--accent)"
           >
-            أهلًا!
+            {text.hello}
           </text>
         </g>
       </Reveal>
@@ -61,7 +64,7 @@ export default function HelloScene() {
           className="signature"
           fill="var(--accent)"
         >
-          Let’s make sense of data.
+          {text.signature}
         </text>
       </Reveal>
     </SceneCanvas>
